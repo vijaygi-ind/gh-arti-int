@@ -35,8 +35,8 @@ jobs:
       - name: Configure npm registry
         run: |
           jf npm-config \
-            --repo-resolve=git-amitesh-npm \
-            --repo-deploy=git-amitesh-npm \
+            --repo-resolve=vgi-gh-npm \
+            --repo-deploy=vgi-gh-npm \
             --server-id-resolve=artifactory-server \
             --server-id-deploy=artifactory-server
       # Step 4: Install dependencies
@@ -55,10 +55,10 @@ jobs:
       - name: Upload build output to Artifactory
         run: |
           jf npm publish \
-            --build-name=git-npm-build \
+            --build-name=vgi-npm-build \
             --build-number=${{ github.run_number }} \
             --server-id=artifactory-server
       # Step 8: Publish Build Info
       - name: Publish Build Info
         run: |
-          jf rt build-publish git-npm-build ${{ github.run_number }} 
+          jf rt build-publish vgi-npm-build ${{ github.run_number }} 
